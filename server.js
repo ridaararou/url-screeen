@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 5000;
 
 
 app.get('/about', (req, res) => {
-  req.send('<h1> Hello Every one to about page</h1>');
+  res.send('<h1> Hello Every one to about page</h1>');
 });
 
 app.get('/:type?', (req, res) => {
@@ -24,7 +24,8 @@ app.get('/:type?', (req, res) => {
 
       console.log(req.query.url, siteUrl)
 
-      const browser = await puppeteer.launch({ignoreDefaultArgs: ['--disable-extensions']});
+      // const browser = await puppeteer.launch({ignoreDefaultArgs: ['--disable-extensions']});
+      const browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox']});
       // const browser = await puppeteer.launch();
       const page = await browser.newPage();
       await page.goto(siteUrl);
