@@ -24,7 +24,8 @@ app.get('/:type?', (req, res) => {
 
       console.log(req.query.url, siteUrl)
 
-      const browser = await puppeteer.launch();
+      const browser = await puppeteer.launch({ignoreDefaultArgs: ['--disable-extensions']});
+      // const browser = await puppeteer.launch();
       const page = await browser.newPage();
       await page.goto(siteUrl);
       var img = await page.screenshot({ 
