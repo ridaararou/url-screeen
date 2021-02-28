@@ -6,6 +6,11 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 
+
+app.get('/about', (req, res) => {
+  req.send('<h1> Hello Every one to about page</h1>');
+});
+
 app.get('/:type?', (req, res) => {
 
 
