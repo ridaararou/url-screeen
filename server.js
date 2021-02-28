@@ -6,7 +6,7 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 
-app.get('/', (req, res) => {
+app.get('/:type?', (req, res) => {
 
 
   (async () => {
@@ -45,9 +45,11 @@ app.get('/', (req, res) => {
         imageBase64: img
       }
 
-      // res.json(obj);
       // console.log(obj)
-      res.send(`<h1>Social Share Image</h1> <pre>${JSON.stringify(obj)}</pre> <br><br><img src="${img}">` );
+      if(req.params.type == 'json')
+        res.json(obj);
+      else
+        res.send(`<h1>Social Share Image by Rida Ararou - Kreatinc</h1> <pre>${JSON.stringify(obj)}</pre> <br><br><img src="${img}">` );
 
     } catch (error) {
       console.error('oops, something went wrong!' + error);
