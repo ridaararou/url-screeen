@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  
+<head>
+  <meta charset="UTf-8">
+  <title>Social Media Share Image Editor - Listings to Leads</title>
+  <meta name="description" content="Template 01 of social Share Image">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="preload" href="img/icons.svg" as="image" type="image/svg+xml">
+  <link rel="stylesheet" href="css/avenir-next.min.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link href="https://fonts.googleapis.com/css?family=Architects+Daughter|Marck+Script|Montserrat:400,700|Raleway:300,400,700|Source+Sans+Pro:300,400,700" rel="stylesheet" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.typekit.net/qze1qdh.css" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/avenir.min.css">
+
+  <link rel="shortcut icon" href="img/favicon.ico">
+  <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="img/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="img/apple-touch-icon-114x114.png">
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+  <![endif]-->
+
+  <style>
+
+    * {
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+    }
+
+    h1, .h1, h2, .h2, h3, .h3 {
+      margin-top: 0;
+      margin-bottom: 15px;
+      font-family: inherit;
+      font-weight: 700;
+      line-height: 1.1;
+      color: #222222;
+    }
+
+    h3, .h3 {
+      font-size: 24px;
+    }
+
+    p {
+      margin: 0 0 12px;
+    }
+
+    .subtitle {
+      margin-bottom: 5px;
+      font-weight: 400;
+    }
+
+
+    body {
+      -webkit-font-smoothing: antialiased;
+      font-family: "-apple-system", "BlinkMacSystemFont", "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #515151;
+      background-color: #f2f2f2;
+      text-rendering: optimizeLegibility;
+      word-break: break-word;
+      position: relative;
+      padding-top: 54px;
+      margin: 0;
+    }
+
+
+    .ssi-editor .title, .ssi-editor .subtitle {
+      max-width: 150px;
+      white-space: nowrap;
+      overflow: hidden;
+      -o-text-overflow: ellipsis;
+      text-overflow: ellipsis;
+      display: inline-block;
+    }
+    /*  */
+        
+    .ssi-editor {
+      --ie-primary-color:  rgba(209, 19, 34, 0.7);
+      --ie-secondary-color:  #fff;
+      --ie-font-family: 'Avenir Next', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      --ie-content-top:  auto;
+      --ie-content-bottom:  15px;
+      --ie-bg-img-position:  center;
+      position: relative;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .ssi-editor img {
+      max-width: 100%;
+    }
+
+    .ssi-editor .img, .ssi-editor .ssi-editor-bg {
+      -o-object-fit: cover;
+      object-fit: cover;
+      -o-object-position: var(--ie-bg-img-position, center);
+      object-position: var(--ie-bg-img-position, center);
+      -webkit-transition: .25s ease-in-out;
+      -o-transition: .25s ease-in-out;
+      transition: .25s ease-in-out;
+    }
+
+    .ssi-editor-body {
+      position: relative;
+      height: 314px;
+      background: #fafafa;
+      overflow: hidden;
+      -webkit-transition: .25s ease-in-out;
+      -o-transition: .25s ease-in-out;
+      transition: .25s ease-in-out;
+      pointer-events: none;
+    }
+
+    .ssi-editor-body .ssi-editor-controls {
+      display: none;
+    }
+
+    .ssi-editor-controls {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      z-index: 999;
+    }
+
+    .ssi-editor-controls .btn-group {
+      opacity: .7;
+    }
+
+    .ssi-editor-controls .btn-group:hover {
+      opacity: 1;
+    }
+
+    .ssi-editor-controls.center {
+      left: 50% !important;
+      -webkit-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+      transform: translateX(-50%);
+    }
+
+    .ssi-editor-controls.right {
+      left: auto !important;
+      right: 15px;
+    }
+
+    .ssi-editor-controls.bottom {
+      top: auto !important;
+      bottom: 0;
+    }
+
+    .ssi-editor-content {
+      position: absolute;
+      top: var(--ie-content-top, auto);
+      bottom: var(--ie-content-bottom, 15px);
+      left: 15px;
+      right: 15px;
+      font-family: var(--ie-font-family, "'Avenir Next', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;");
+      color: var(--ie-secondary-color, #fff);
+    }
+
+    .ssi-editor .ie-div {
+      position: relative;
+      overflow: hidden;
+      height: 314px;
+    }
+
+    .ssi-editor .ie-insta {
+      display: none;
+    }
+
+    .ssi-editor-bg {
+      height: 100%;
+      width: 100%;
+    }
+
+    .ssi-editor-footer {
+      padding: 15px;
+      background-color: #fbfbfb;
+      border: 1px solid #ededed;
+      border-bottom-right-radius: 6px;
+      border-bottom-left-radius: 6px;
+    }
+
+    .ssi-editor .banner {
+      background-color: var(--ie-primary-color, rgba(209, 19, 34, 0.7));
+      padding: 15px;
+      text-align: center;
+    }
+
+    .ssi-editor .banner::after {
+      content: "";
+      position: absolute;
+      border: 1px solid var(--ie-secondary-color, #fff);
+      bottom: 6px;
+      left: 6px;
+      top: 6px;
+      right: 6px;
+    }
+
+    .ssi-editor .title, .ssi-editor .subtitle {
+      position: relative;
+      display: block;
+      max-width: 540px;
+      line-height: 1.4;
+      color: inherit;
+      margin-bottom: 0;
+      z-index: 9;
+      outline: 0;
+    }
+
+    .ssi-editor .title + .title, .ssi-editor .subtitle + .title {
+      margin-top: 5px;
+    }
+
+    .ssi-editor.instagram .ie-insta {
+      display: block;
+    }
+
+    .ssi-editor.instagram .ssi-editor-body {
+      height: 600px;
+    }
+
+    .ssi-editor:not(.instagram) .ssi-editor-bg.rotate90, .ssi-editor:not(.instagram) .ssi-editor-bg.rotate270 {
+      height: 600px;
+      width: 314px;
+    }
+
+    .ssi-editor-edit .ssi-editor-body {
+      pointer-events: initial;
+    }
+
+    .ssi-editor-edit .ssi-editor-body .ssi-editor-controls {
+      display: block;
+      top: -2px;
+      left: -2px;
+    }
+
+    .ssi-editor-edit .ssi-editor-body .ssi-editor-controls .btn-group, .ssi-editor-edit .ssi-editor-body .ssi-editor-controls .btn-group-vertical {
+      vertical-align: top;
+    }
+
+    .ssi-editor-edit .ssi-editor-body .ssi-editor-controls .btn-xs, .ssi-editor-edit .ssi-editor-body .ssi-editor-controls .btn-group-xs > .btn {
+      padding-top: 0px;
+      padding-bottom: 0px;
+    }
+
+    .ssi-editor-prod {
+      -webkit-transform: scale(2);
+      -ms-transform: scale(2);
+      transform: scale(2);
+      pointer-events: none;
+      z-index: 99;
+    }
+
+    .ssi-editor-prod > div:not(.ssi-editor-body), .ssi-editor-prod > a {
+      display: none;
+    }
+
+    .rotate90 {
+      -webkit-transform-origin: top left;
+      -ms-transform-origin: top left;
+      transform-origin: top left;
+      transform: rotate(90deg) translateY(-100%);
+      -webkit-transform: rotate(90deg) translateY(-100%);
+      -ms-transform: rotate(90deg) translateY(-100%);
+    }
+
+    .rotate180 {
+      -webkit-transform-origin: top left;
+      -ms-transform-origin: top left;
+      transform-origin: top left;
+      transform: rotate(180deg) translate(-100%, -100%);
+      -webkit-transform: rotate(180deg) translate(-100%, -100%);
+      -ms-transform: rotate(180deg) translateX(-100%, -100%);
+    }
+
+    .rotate270 {
+      -webkit-transform-origin: top left;
+      -ms-transform-origin: top left;
+      transform-origin: top left;
+      transform: rotate(270deg) translateX(-100%);
+      -webkit-transform: rotate(270deg) translateX(-100%);
+      -ms-transform: rotate(270deg) translateX(-100%);
+    }
+
+    .w-700 {
+      width: 700px;
+      max-width: 100%;
+    }
+
+    .pl0 {
+      padding-left: 0 !important;
+    }
+
+    .fixed-middle-text {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+      color: #fff;
+      background-color: rgba(0, 0, 0, 0.6);
+      font-size: 40px;
+      font-family: var(--ie-font-family, "Avenir Next", -apple-system, "Segoe UI", Roboto, "Open Sans", "Helvetica Neue", sans-serif);
+    }
+
+    .t2 {
+      --ie-primary-color: rgba(0,0,0,0.72);
+    }
+
+    .t2:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      background: rgba(0, 0, 0, 0.4);
+      background: -webkit-gradient(linear, left bottom, left top, from(var(--ie-primary-color, rgba(0, 0, 0, 0.72))), color-stop(40%, transparent));
+      background: -o-linear-gradient(bottom, var(--ie-primary-color, rgba(0, 0, 0, 0.72)), transparent 40%);
+      background: linear-gradient(to top, var(--ie-primary-color, rgba(0, 0, 0, 0.72)), transparent 40%);
+      left: 0;
+      bottom: 0;
+      right: 0;
+      z-index: 1;
+    }
+
+    .t2 .ssi-editor-content {
+      color: var(--ie-secondary-color, #fff);
+      z-index: 2;
+    }
+
+    .t2 .title, .t2 .subtitle {
+      max-width: 480px;
+      text-shadow: 1px 1px 4px var(--ie-primary-color, rgba(0, 0, 0, 0.72));
+    }
+
+    .t3 {
+      --ie-primary-color: #fff;
+      --ie-secondary-color: rgb(6, 26, 94);
+    }
+
+    .t3 .ssi-editor-content {
+      max-width: 365px;
+      color: var(--ie-secondary-color, #061a5e);
+    }
+
+    .t3 .title, .t3 .subtitle {
+      max-width: 292px;
+      font-size: 11px;
+    }
+
+    .t3 .title {
+      font-size: 18px;
+    }
+
+    .t3 .ssi-editor-bg {
+      height: 314px;
+    }
+
+    .t3 .ssi-editor-bg.rotate90, .t3 .ssi-editor-bg.rotate270 {
+      height: 396.666px !important;
+    }
+
+    .t3 .ssi-editor-bg.rotate90.ssi-editor-2, .t3 .ssi-editor-bg.rotate270.ssi-editor-2 {
+      height: 199px !important;
+      width: 314px;
+      max-width: 314px;
+    }
+
+    .t3 .ie-div {
+      display: none;
+      height: 250px;
+    }
+
+    .instagram .t3 .ie-div {
+      display: block;
+    }
+
+    .instagram .t3 .img-2 {
+      height: 250px;
+      width: 100%;
+    }
+
+    .instagram .t3 .img-2.rotate90, .instagram .t3 .img-2.rotate270 {
+      height: 600px;
+      width: 250px;
+    }
+
+    .instagram .t3 .ssi-editor-bg {
+      height: 346px;
+    }
+
+    .instagram .t3 .ssi-editor-bg.rotate90, .instagram .t3 .ssi-editor-bg.rotate270 {
+      width: 346px;
+      max-width: 346px;
+    }
+
+    .t3 .media.banner-alt {
+      position: relative;
+    }
+
+    .t3 .media.banner-alt:before {
+      content: '';
+      position: absolute;
+      left: 30px;
+      top: 5px;
+      width: 100%;
+      bottom: 4px;
+      background: var(--ie-primary-color, #fff);
+      z-index: 0;
+    }
+
+    .t3 .img-circle {
+      position: relative;
+    }
+
+    .t4 {
+      --ie-primary-color: #c78d3b;
+      --ie-secondary-color: #fff;
+      padding: 5px;
+    }
+
+    .t4 .ssi-editor-content {
+      left: 5px;
+      right: 5px;
+      bottom: 5px;
+      color: var(--ie-secondary-color, #fff);
+    }
+
+    .t4 .title, .t4 .subtitle {
+      max-width: 480px;
+    }
+
+    .t4 .banner-alt {
+      position: relative;
+      height: 85px;
+      background-color: var(--ie-primary-color, #c78d3b);
+      padding: 5px;
+    }
+
+    .t4 .banner-alt .media-body {
+      padding: 10px;
+      padding-left: 15px;
+    }
+
+    .t4 .ie-div {
+      height: 104.5px;
+    }
+
+    .t4 .ssi-editor-bg {
+      height: 214px;
+    }
+
+    .t4 .ssi-editor-bg.rotate90, .t4 .ssi-editor-bg.rotate270 {
+      height: 390px !important;
+      width: 214px !important;
+    }
+
+    .t4 .img-1 {
+      height: 104.5px;
+      width: 100%;
+    }
+
+    .t4 .img-1.rotate90, .t4 .img-1.rotate270 {
+      width: 104.5px;
+      height: 195px;
+    }
+
+    .instagram .t4 .ie-div {
+      height: 163.5px;
+    }
+
+    .instagram .t4 .ssi-editor-bg {
+      height: 501px;
+    }
+
+    .instagram .t4 .ssi-editor-bg.rotate90, .instagram .t4 .ssi-editor-bg.rotate270 {
+      width: 501px !important;
+      max-width: 501px !important;
+    }
+
+    .instagram .t4 .img-1 {
+      height: 163.5px;
+      width: 100%;
+    }
+
+    .instagram .t4 .img-1.rotate90, .instagram .t4 .img-1.rotate270 {
+      height: 195px;
+      width: 163.5px;
+      max-width: 163.5px;
+    }
+
+    .t5, .t6, .t7 {
+      --ie-primary-color: #01295d;
+      --ie-secondary-color: #fff;
+      --ie-content-bottom: 30px;
+      padding: 5px;
+      background-color: var(--ie-primary-color, #01295d);
+    }
+
+    .t5 .ssi-editor-content, .t6 .ssi-editor-content, .t7 .ssi-editor-content {
+      left: 5px;
+      right: 210px;
+    }
+
+    .t5 .title, .t6 .title, .t7 .title, .t5 .subtitle, .t6 .subtitle, .t7 .subtitle {
+      display: inline-block;
+      max-width: 390px;
+      background-color: var(--ie-primary-color, #01295d);
+      padding: 8px 15px;
+      font-size: 20px;
+    }
+
+    .t5 .title ~ .subtitle, .t6 .title ~ .subtitle, .t7 .title ~ .subtitle, .t5 .subtitle ~ .subtitle, .t6 .subtitle ~ .subtitle, .t7 .subtitle ~ .subtitle {
+      margin-top: -7px;
+    }
+
+    .t5 .subtitle, .t6 .subtitle, .t7 .subtitle {
+      padding-top: 10px;
+      padding-bottom: 10px;
+      background-color: var(--ie-secondary-color, #fff);
+      color: var(--ie-primary-color, #01295d);
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .t5 .ssi-editor-bg, .t6 .ssi-editor-bg, .t7 .ssi-editor-bg {
+      height: 304px;
+    }
+
+    .t5 .ssi-editor-bg.rotate90, .t6 .ssi-editor-bg.rotate90, .t7 .ssi-editor-bg.rotate90, .t5 .ssi-editor-bg.rotate270, .t6 .ssi-editor-bg.rotate270, .t7 .ssi-editor-bg.rotate270 {
+      max-width: 304px;
+      height: 390px !important;
+    }
+
+    .t5 .ie-div, .t6 .ie-div, .t7 .ie-div {
+      height: 149.5px;
+    }
+
+    .t5 .img-1, .t6 .img-1, .t7 .img-1 {
+      height: 149.5px;
+      width: 100%;
+    }
+
+    .t5 .img-1.rotate90, .t6 .img-1.rotate90, .t7 .img-1.rotate90, .t5 .img-1.rotate270, .t6 .img-1.rotate270, .t7 .img-1.rotate270 {
+      width: 149.5px;
+      height: 195px;
+    }
+
+    .instagram .t5 .ssi-editor-bg, .instagram .t6 .ssi-editor-bg, .instagram .t7 .ssi-editor-bg {
+      height: 590px;
+    }
+
+    .instagram .t5 .ssi-editor-bg.rotate90, .instagram .t6 .ssi-editor-bg.rotate90, .instagram .t7 .ssi-editor-bg.rotate90, .instagram .t5 .ssi-editor-bg.rotate270, .instagram .t6 .ssi-editor-bg.rotate270, .instagram .t7 .ssi-editor-bg.rotate270 {
+      max-width: 590px;
+      width: 590px;
+    }
+
+    .instagram .t5 .img-1, .instagram .t6 .img-1, .instagram .t7 .img-1, .instagram .t5 .ie-div, .instagram .t6 .ie-div, .instagram .t7 .ie-div {
+      height: 193.33333px;
+    }
+
+    .instagram .t5 .img-1.rotate90, .instagram .t6 .img-1.rotate90, .instagram .t7 .img-1.rotate90, .instagram .t5 .img-1.rotate270, .instagram .t6 .img-1.rotate270, .instagram .t7 .img-1.rotate270 {
+      width: 193.33333px;
+      height: 195px;
+      max-width: 193.33333px;
+    }
+
+    .t6 {
+      --ie-primary-color: #af0e0e;
+      --ie-secondary-color: #fff;
+      --ie-content-top: 20px;
+      --ie-content-bottom: auto;
+    }
+
+    .t6 .title, .t6 .subtitle {
+      max-width: 339px;
+    }
+
+    .t6 .ssi-editor-bg.rotate90, .t6 .ssi-editor-bg.rotate270 {
+      max-width: 304px;
+      height: 340px !important;
+    }
+
+    .t6 .img-1.rotate90, .t6 .img-1.rotate270 {
+      height: 245px;
+    }
+
+    .t6 .col-xs-6 > .ie-div .img-1.rotate90, .t6 .col-xs-6 > .ie-div .img-1.rotate270 {
+      height: 122px;
+      max-width: 150px;
+    }
+
+    .instagram .t6 .col-xs-6 {
+      width: 100%;
+      padding-left: 5px !important;
+    }
+
+    .instagram .t6 .img-1.rotate90, .instagram .t6 .img-1.rotate270 {
+      height: 245px !important;
+      max-width: 193.3333px !important;
+    }
+
+    .t7 .ssi-editor-content {
+      right: 5px;
+      left: auto;
+      z-index: 999;
+    }
+
+    .t7 .title, .t7 .subtitle {
+      max-width: 590px;
+      float: right;
+    }
+
+    .t7 .title ~ .subtitle {
+      margin-top: 0;
+    }
+
+    .t7 .ie-div-bg {
+      height: 209px;
+    }
+
+    .t7 .ssi-editor-bg {
+      height: 209px;
+    }
+
+    .t7 .ssi-editor-bg.rotate90, .t7 .ssi-editor-bg.rotate270 {
+      height: 590px !important;
+      max-width: 209px;
+    }
+
+    .t7 .img-1 {
+      height: 90px;
+      width: 100%;
+    }
+
+    .t7 .img-1.rotate90, .t7 .img-1.rotate270 {
+      width: 90px;
+      height: 195px;
+    }
+
+    .t7 .ie-div {
+      height: 90px;
+    }
+
+    .t7 .fixed-middle-text {
+      font-size: 30px;
+    }
+
+    .instagram .t7 .ie-div-bg {
+      height: 392px;
+    }
+
+    .instagram .t7 .ssi-editor-bg {
+      height: 392px;
+    }
+
+    .instagram .t7 .ssi-editor-bg.rotate90, .instagram .t7 .ssi-editor-bg.rotate270 {
+      max-width: 392px;
+    }
+
+    /*  */
+    
+
+  </style>
+
+  <style>    
+
+    .ssi-editor.ssi-editor-prod {
+      margin-top: 103px;
+    }
+    .ssi-editor.ssi-editor-prod.instagram {
+      margin-top: 246px;
+    }
+    #changeTemplate {
+      height: 1200px;
+      width: 1200px;
+    }
+  </style>
+  
+</head>
+
+<body>
+
+  <div id="changeTemplate"></div>
+
+
+  <!-- This is the dom-to-image plugin cdn It's used to take screenshot and convert HTM elements to canvas -->
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"></script> -->
+    
+  <!-- Javascript -->
+  <script src="js/plugins.min.js"></script>
+  <script src="js/main.min.js"></script>
+
+
+  <script>
+
+    // ieData default
+    ieDATA = {
+      "template": 1, 
+      "colors": {"primary": "rgba(170, 35, 40, 0.8)", "secondary": "#fff"},
+      "font": "Avenir Next",
+      "title": "OPEN HOUSE in New York",
+      "subtitle": "Click Or Text 9494 to 10005 for More Photos and Details!", 
+      "textPosition": "bottom",
+      "moreImgNb": "20",
+      "agent" : {
+        "src": "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=300",
+        "position": "left top",
+        "rotation": "0"
+      },
+      "images": [
+        {
+          "src": "img/1.jpg",
+          "position": "center",
+          "rotation": "0"
+        },
+        {
+          "src": "img/2.jpg",
+          "position": "right bottom",
+          "rotation": "0"
+        },
+        {
+          "src": "img/3.jpg",
+          "position": "center",
+          "rotation": "0"
+        },
+        {
+          "src": "img/4.jpg",
+          "position": "left top",
+          "rotation": "0"
+        }
+      ]
+    };
+
+    // 
+    var url = new URL(window.location.href);
+    var templateType =  url.searchParams.get("templateType") || 'facebook';
+    
+    try {
+      if(url.searchParams.get("templateData")) {
+        ieDATA = url.searchParams.get("templateData") || ieDATA;
+        // console.log(JSON.parse(ieDATA));
+        ieDATA = JSON.parse(ieDATA);
+      }
+    } catch (error) { console.log('error', ieData) }
+
+
+    /* 
+    // @ieData param is the ssi data , 
+    // @templateNumber param: choose template number
+    // @templateType param: type (facebook/instagram)
+    */
+    var node = generateImageDynamic(ieDATA, ieDATA.template, templateType);
+    // console.log('node::', node)
+    document.getElementById('changeTemplate').innerHTML = node.innerHTML;
+    
+
+    
+    // in backend code we should encode the template object (ieDATA) and send it in url parameter like this
+    // PHP: $templateData = urlencode(json_encode($ieDATA));
+    // http://localhost:3000/ssi-editor-generate-template.html?templateType=instagram&templateData=$templateData
+    
+
+    // this JS ex: var templateData = encodeURIComponent(JSON.stringify(ieDATA));
+    // http://localhost:3000/ssi-editor-generate-template.html?templateType=facebook&templateData=templateData
+    // encodeURIComponent('{ "template": 1, "colors": {"primary": "rgba(170, 200, 40, 0.9)", "secondary": "#f09"}, "font": "Avenir Next", "title": "OPEN HOUSE in Martil", "subtitle": "Click Or Text 9494 to 9999 for More Photos!", "textPosition": "bottom", "moreImgNb": "20", "agent" : { "src": "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=300", "position": "left top", "rotation": "0" }, "images": [ { "src": "img/1.jpg", "position": "center", "rotation": "0" }, { "src": "img/2.jpg", "position": "right bottom", "rotation": "0" }, { "src": "img/3.jpg", "position": "center", "rotation": "0" }, { "src": "img/4.jpg", "position": "left top", "rotation": "0" } ] }');
+
+    // url will look like this;
+    // http://localhost:3000/ssi-editor-generate-template.html?templateType=instagram&templateData=%7B%22template%22%3A2%2C%22colors%22%3A%7B%22primary%22%3A%22rgba(170%2C%2090%2C%2040%2C%200.9)%22%2C%22secondary%22%3A%22%23fff%22%7D%2C%22font%22%3A%22Avenir%20Next%22%2C%22title%22%3A%22OPEN%20HOUSE%20in%20New%20York%22%2C%22subtitle%22%3A%22Click%20Or%20Text%209494%20to%2010005%20for%20More%20Photos%20and%20Details!%22%2C%22textPosition%22%3A%22bottom%22%2C%22moreImgNb%22%3A%2220%22%2C%22agent%22%3A%7B%22src%22%3A%22https%3A%2F%2Fimages.pexels.com%2Fphotos%2F220453%2Fpexels-photo-220453.jpeg%3Fauto%3Dcompress%26cs%3Dtinysrgb%26dpr%3D1%26w%3D300%22%2C%22position%22%3A%22left%20top%22%2C%22rotation%22%3A%220%22%7D%2C%22images%22%3A%5B%7B%22src%22%3A%22tools%2Fsocial-share-image-templates%2Fimg%2F1.jpg%22%2C%22position%22%3A%22center%22%2C%22rotation%22%3A%220%22%7D%2C%7B%22src%22%3A%22tools%2Fsocial-share-image-templates%2Fimg%2F2.jpg%22%2C%22position%22%3A%22right%20bottom%22%2C%22rotation%22%3A%220%22%7D%2C%7B%22src%22%3A%22tools%2Fsocial-share-image-templates%2Fimg%2F3.jpg%22%2C%22position%22%3A%22center%22%2C%22rotation%22%3A%220%22%7D%2C%7B%22src%22%3A%22tools%2Fsocial-share-image-templates%2Fimg%2F4.jpg%22%2C%22position%22%3A%22left%20top%22%2C%22rotation%22%3A%220%22%7D%5D%7D
+
+
+  </script>
+
+</body>
+</html>

@@ -1,6 +1,7 @@
 const express = require('express');
 // const domtoimage = require('dom-to-image');
 const puppeteer = require('puppeteer');
+// npm install node-html-to-image
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -8,6 +9,11 @@ const PORT = process.env.PORT || 5000;
 
 
 app.get('/about', (req, res) => {
+  res.send('<h1> Hello Every one to about page</h1>');
+});
+
+app.get('/htmlimg', (req, res) => {
+  
   res.send('<h1> Hello Every one to about page</h1>');
 });
 
