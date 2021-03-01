@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 // const domtoimage = require('dom-to-image');
 const puppeteer = require('puppeteer');
 // npm install node-html-to-image
@@ -12,12 +13,21 @@ app.get('/about', (req, res) => {
   res.send('<h1> Hello Every one to about page</h1>');
 });
 
-app.get('/htmlimg', (req, res) => {
+const nodeHtmlToImage = require('node-html-to-image');
+app.get('/htmlimg', async (req, res) => {
   
-  res.send('<h1> Hello Every one to about page</h1>');
+  const image = await nodeHtmlToImage({
+    html: '<html><body><div style="hello world">Check out what I just did! great</div></body></html>'
+  });
+  res.writeHead(200, { 'Content-Type': 'image/png' });
+  res.end(image, 'binary');
+  
+  // res.send('<h1> Hello Every one to about page</h1>');
 });
 
-app.get('/:type?', (req, res) => {
+
+
+app.get('/api/:type?', (req, res) => {
 
 
   (async () => {
@@ -29,7 +39,7 @@ app.get('/:type?', (req, res) => {
       var height = (req.query.height) ? (req.query.height) : 1200;
 
       console.log(req.query.url, siteUrl)
-
+      // { args: ['--no-sandbox'] }
       // const browser = await puppeteer.launch({ignoreDefaultArgs: ['--disable-extensions']});
       const browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox']});
       // const browser = await puppeteer.launch();
@@ -71,6 +81,13 @@ app.get('/:type?', (req, res) => {
     }
   })();
 
+})
+
+
+// SSI Editor
+app.use(express.static(path.join(__dirname, 'client')))
+app.get('/editor', (req, res) => {
+  res.sendFile(path.join(__dirname, '/client/ssi-editor.html'))
 })
 
 
