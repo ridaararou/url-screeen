@@ -21,7 +21,7 @@ app.get('/urlscreen/:type?', (req, res) => {
       console.log(req.query.url, siteUrl);
       
       // const browser = await puppeteer.launch({ignoreDefaultArgs: ['--disable-extensions']});
-      const browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox']});
+      const browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-extensions']});
      
       const page = await browser.newPage();
       await page.goto(siteUrl);
@@ -55,7 +55,7 @@ app.get('/urlscreen/:type?', (req, res) => {
           <br>
           <br>
           <h1 style='font-family: "-apple-system", "BlinkMacSystemFont", "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
-          font-size: 32px;'>Social Share Image by <a target="_blank" href="https://github.com/ridaararou">Rida Ararou</a> - <a target="_blank" href="https://www.linkedin.com/company/kreatinc/">Kreatinc</a></h5> 
+          font-size: 16px; margin-top: 50px'>Social Share Image by <a target="_blank" href="https://github.com/ridaararou">Rida Ararou</a> - <a target="_blank" href="https://www.linkedin.com/company/kreatinc/">Kreatinc</a></h5> 
           <!-- <pre style="background: #eeeeee; padding: 10px; border-radius: 5px;">${JSON.stringify(obj)}</pre> -->
         `);
       else
