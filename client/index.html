@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTf-8">
+  <title>Home URL Screenshot | Kreatinc</title>
+  <meta name="description" content="Url screen to take a Screenshot to convert html to image - by rida@kreatinc Ltd">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://bootswatch.com/4/darkly/bootstrap.min.css">
+
+  <style>
+    #inputURL {
+      width: 400px; display: inline-block; vertical-align: middle; 
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container mt-5 text-center" data-children-count="1">
+    <h1>Welcome to <b class="text-success" data-children-count="0"> raUrlScreen </b></h1>
+    <div data-children-count="1">
+      <input id="inputURL" class="form-control mr-3" placeholder="Enter a page url to convert it to an image">
+      <a id="showBtn" target="_blank" class="btn btn-primary mr-1" href="/urlscreen/show?width=1200&height=628&url=">show generate image</a> 
+      <a id="jsonBtn" target="_blank" class="btn btn-warning" href="/urlscreen/?width=1200&height=628&url=">JSON</a>
+    </div>
+    <h5 style="position: fixed; bottom: 5px; left: 0; width:100% ">All Copyrights
+      <a target="_blank"href="https://www.linkedin.com/in/rida-ararou-455167131/">@Rida Ararou </a> - 
+      <a target="_blank" href="https://www.linkedin.com/company/kreatinc/">Kreatinc.Ltd</a>
+    </h5>
+  </div>
+  
+  <script>
+    document.querySelector("#inputURL").addEventListener("input", function () {
+      console.log(this.value);
+      document.getElementById("showBtn").setAttribute("href", "/urlscreen/show?url=" + encodeURIComponent(this
+        .value));
+      document.getElementById("jsonBtn").setAttribute("href", "/urlscreen/?url=" + encodeURIComponent(this.value))
+    })
+  </script>
+  
+</body>
+
+</html>
