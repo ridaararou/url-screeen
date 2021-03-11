@@ -1,10 +1,8 @@
 var express = require('express');
 var app = express();
 var puppeteer = require('puppeteer');
-var path = require('path');
 var PORT = process.env.PORT || 5000;
 
-// run polyfill
 try {
   var fs = require('fs');
   var vm = require('vm');
@@ -65,8 +63,8 @@ app.get('/urlscreen', (req, res) => {
         case 17:
           imageBase64 = 'data:image/jpeg;base64,' + img;
           obj = {
-            height: height,
-            width: width,
+            height: parseInt(height),
+            width: parseInt(width) ,
             url: req.query.url,
             imageBase64: imageBase64
           };
@@ -93,5 +91,5 @@ app.get('/urlscreen', (req, res) => {
 });
 
 
-app.listen(PORT, function () { console.log('server is running at http://localhost:' + PORT) });
+app.listen(PORT, function () { console.log('Server is running on port ' + PORT) });
 
