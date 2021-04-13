@@ -170,7 +170,7 @@ app.get('/urlscreen/:type?', (req, res) => {
 
 // about page example
 app.get('/about', (req, res) => {
-  res.send('<h1> Social Share Image Editor -  <a href="https://www.kreatinc.com/">Kreatinc</a>  | <a target="_blank" href="https://github.com/ridaararou">Rida Ararou</a></h1>');
+  res.send('<h1>  Social Share Image Editor -  <a href="https://www.kreatinc.com/">Kreatinc</a>  | <a target="_blank" href="https://github.com/ridaararou">Rida Ararou | updated by actions</a></h1>');
 });
 
 
