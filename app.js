@@ -168,9 +168,93 @@ app.get('/urlscreen/:type?', (req, res) => {
 
 });
 
+
+// pdf generator
+app.get('/pdfgenerator/:type?', (req, res) => {
+
+  
+  (async () => {
+
+    try {
+      var siteUrl = (req.query.url) ? (req.query.url) : 'https://l2l-prints.boringserver.com/report-inherited-properties-text.html';
+      var format = (req.query.format) ? (req.query.format) : 'A4';
+
+      // const browser = await puppeteer.launch({ignoreDefaultArgs: ['--disable-extensions']});
+      const browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox']});
+      // const browser = await puppeteer.launch();
+      const page = await browser.newPage();
+      await page.goto(siteUrl);
+      
+      await page.goto(siteUrl, {
+          waitUntil: "networkidle0"
+      });
+  
+      var pdf = await page.pdf({
+        // printBackground: true,
+        encoding: 'base64',
+        path: "report.pdf",
+        format: format,
+        scale: 1.67
+        // margin: {
+        //     top: "20px",
+        //     bottom: "40px",
+        //     left: "20px",
+        //     right: "20px"
+        // }
+      });
+  
+      await browser.close();
+
+
+      // 
+      var pdfBase64 = 'data:application/pdf;base64,' + pdf.toString('base64');
+
+      // console.log()
+      // 
+      var obj = {
+        format,
+        url: req.query.url,
+        pdfBase64: pdfBase64
+      }
+
+      if(req.params.type == 'show')
+      {
+        res.contentType("application/pdf");
+        res.send(pdf);
+      }
+      else if (req.params.type == 'download') {
+        // console.log('download')
+        var pdfname = req.query.filename || 'downloaded-pdf';
+        pdfname = 'string' == typeof pdfname ? decodeURIComponent(pdfname) : pdfname;
+        var fs = require('fs');
+        var file = fs.createReadStream('./report.pdf');
+        var stat = fs.statSync('./report.pdf');
+        res.setHeader('Content-Length', stat.size);
+        res.setHeader('Content-Type', 'application/pdf');
+        res.setHeader('Content-Disposition', 'attachment; filename='+pdfname+'.pdf');
+        file.pipe(res);
+      }
+      else
+        res.json(obj);
+
+  
+      // res.contentType("application/pdf");
+      // res.send(pdf);
+      
+    } catch (error) {
+      console.error('oops, something went wrong!' + error);
+      res.json({error: 'something went worng!' + error});
+      // res.send('<h1>Error!! '+ error);
+    }
+  })();
+
+});
+
+
+
 // about page example
 app.get('/about', (req, res) => {
-  res.send('<h1>  Social Share Image Editor -  <a href="https://www.kreatinc.com/">Kreatinc</a>  | <a target="_blank" href="https://github.com/ridaararou">Rida Ararou | updated by actions</a></h1>');
+  res.send('<h1> Social Share Image Editor -  <a href="https://www.kreatinc.com/">Kreatinc</a>  | <a target="_blank" href="https://github.com/ridaararou">Rida Ararou</a></h1>');
 });
 
 
