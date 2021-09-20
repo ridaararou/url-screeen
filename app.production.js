@@ -72,8 +72,8 @@ app.get('/urlscreen', (req, res) => {
         case 17:
           imageBase64 = 'data:image/jpeg;base64,' + img;
           obj = {
-            height: height,
-            width: width,
+            height: parseInt(height),
+            width: parseInt(width) ,
             url: req.query.url,
             imageBase64: imageBase64
           };
