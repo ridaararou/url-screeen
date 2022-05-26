@@ -219,7 +219,12 @@ app.get('/pdfgenerator/:type?', (req, res) => {
 
       if(req.params.type == 'show')
       {
+        pdfname = req.query.filename || 'downloaded-pdf';
+        pdfname = 'string' == typeof pdfname ? decodeURIComponent(pdfname) : pdfname;
+        
         res.contentType("application/pdf");
+        res.setHeader('Content-Type', 'application/pdf');
+        res.setHeader('Content-Disposition', 'attachment; filename=' + pdfname + '.pdf');
         res.send(pdf);
       }
       else if (req.params.type == 'download') {
